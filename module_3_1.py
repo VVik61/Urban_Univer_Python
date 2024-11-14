@@ -21,7 +21,7 @@ def string_info(str_var):
     """
 
     count_calls()
-    return (len(str_var), str.upper(str_var), str.lower(str_var))
+    return len(str_var), str.upper(str_var), str.lower(str_var)
 
 
 def is_contains(str_search, list_search):
