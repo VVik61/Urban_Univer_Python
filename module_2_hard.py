@@ -22,4 +22,3 @@ def get_num2 (n):
 First_num = int(input('Введите целое число от 3 до 20: '))
 result = get_num2(First_num)
 print('Пароль:', result)
-
