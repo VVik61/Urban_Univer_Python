@@ -2,6 +2,7 @@
 def print_params(a = 1, b = 'строка', c = True):
     print(a, b, c)
 
+
 # вызов print_params c параметрами разных типов или с неполным кол-вом парам.
 print_params()
 print_params('3', True)
