@@ -12,3 +12,6 @@ inner_function()
 # Ошибка  NameError: name 'inner_function' is not defined, т.е.
 # inner_function - функция не определена (имя ф-ции не видно в пространстве
 # имен модуля namespace.py не найдено)
+
+
+#  Пробы с GIT
