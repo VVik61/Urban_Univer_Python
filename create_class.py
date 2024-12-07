@@ -16,12 +16,15 @@ class House():
             self.name = name
             self.number_of_floors = number_of_floors
     def go_to(self, new_floor):
+        """
+        выводит на экран(в консоль) значения от 1 до new_floor(включительно)
+        """
         print(f'Выводим номера этажей в доме "{self.name}" с 1 по'
               f' {self.number_of_floors}')
         if new_floor > self.number_of_floors or new_floor < 1:
             print("Такого этажа не существует")
         else:
-            for i in range(1, self.number_of_floors + 1):
+            for i in range(1, new_floor + 1):
                 print(i)
 
 
