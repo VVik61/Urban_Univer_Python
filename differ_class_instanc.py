@@ -19,13 +19,16 @@
 
 class House():
     houses_history = []
+    # Старый код
+    # def __new__(cls, *args, **kwargs):
+    #     cls.houses_history += [(args[0])]
+    #     return super().__new__(cls)
 
+    # после просмотра вебинара
     def __new__(cls, *args, **kwargs):
-        cls.houses_history += [(args[0])]
-        return super().__new__(cls)
-
-    def __del__(self):
-        print(self.name,  "снесён, но он останется в истории")
+        obj = object.__new__(cls)
+        cls.houses_history.append(args[0])
+        return obj
 
     def __init__(self, name, number_of_floors):
         # На уровне класса проверяется принадлежность name к типу str,
@@ -35,34 +38,59 @@ class House():
         if isinstance(name, str) and isinstance(number_of_floors, int):
             self.name = name
             self.number_of_floors = number_of_floors
-
         else:
             print("Класс не создан! Для его создания введите правильные "
                   "аргументы")
             exit()
+
     def go_to(self, new_floor):
         """
         выводит на экран(в консоль) значения от 1 до new_floor(включительно)
         """
         if isinstance(new_floor, int):
             print(f'Выводим номера этажей в доме "{self.name}" с 1 по {new_floor}')
-            if new_floor > self.number_of_floors or new_floor < 1:
-                print("Такого этажа не существует")
-            else:
-                for i in range(1, new_floor + 1):
-                    print(i)
+            if 1 <= new_floor <= self.number_of_floors:
+                for floor in range(1, new_floor +1):
+                    print(floor)
+                else:
+                    print("Такого этажа не существует")
+        #     if new_floor > self.number_of_floors or new_floor < 1:
+        #         print("Такого этажа не существует")
+        #     else:
+        #         for i in range(1, new_floor + 1):
+        #             print(i)
         else:
             print('Неверно указан номер этажа. Следует ввести цифру!')
-    def __len__(self):
-        """
-        Возвращает кол-во этажей здания self.number_of_floors
-        """
-        return self.number_of_floors
     def __str__(self):
         """
         Возвращает строку: "Название: <название>, кол-во этажей: <этажи>".
         """
         return f'Название: {self.name}, кол-во этажей: {self.number_of_floors}'
+    def __add__(self, value):
+        """
+        Увеличивает кол-во этажей на переданное значение value, возвращает
+        сам объект self
+        """
+        #Старая реализация
+        # if isinstance(value, int):
+        #     self.number_of_floors += value
+        #     rez = self
+        # else:
+        #     rez = NotImplemented
+        # return rez
+
+        # После вебинара
+        if isinstance(value, House):
+            self.number_of_floors += value.number_of_floors
+        elif isinstance(value, int):
+            self.number_of_floors += value
+        return self
+
+    def __len__(self):
+        """
+        Возвращает кол-во этажей здания self.number_of_floors
+        """
+        return self.number_of_floors
     def __eq__(self, other):
         """ Возвращает True, если кол-во этажей одинаковое у self и у other """
         return (other and isinstance(other, House) and self.number_of_floors ==
@@ -99,6 +127,7 @@ class House():
         """
         if isinstance(other, House):
             return self.number_of_floors <= other.number_of_floors
+
     def  __ne__(self, other):
         """
         Сравнивает количество этажей у self и у other. Возвращает True, если
@@ -106,29 +135,23 @@ class House():
         """
         if isinstance(other, House):
             return self.number_of_floors != other.number_of_floors
-    def __add__(self, value):
-        """
-        Увеличивает кол-во этажей на переданное значение value, возвращает
-        сам объект self
-        """
-        if isinstance(value, int):
-            self.number_of_floors += value
-            rez = self
-        else:
-            rez = NotImplemented
-        return rez
+
     def __iadd__(self, value):
         """
         Увеличивает кол-во этажей на переданное значение value, возвращает
         сам объект self
         """
         return self.__add__(value)
+
     def __radd__(self, value):
         """
         Увеличивает кол-во этажей на переданное значение value, возвращает
         сам объект self
         """
         return self.__add__(value)
+
+    def __del__(self):
+        print(f'{self.name}, снесён, но он останется в истории')
 
 
 print('История строительства - houses_history')

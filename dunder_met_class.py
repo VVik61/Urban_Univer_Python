@@ -14,11 +14,12 @@ class House():
         """
         if isinstance(new_floor, int):
             print(f'Выводим номера этажей в доме "{self.name}" с 1 по {new_floor}')
-            if new_floor > self.number_of_floors or new_floor < 1:
-                print("Такого этажа не существует")
-            else:
+            # Лучше
+            if 1 < new_floor <= self.number_of_floors:
                 for i in range(1, new_floor + 1):
                     print(i)
+            else:
+                print("Такого этажа не существует")
         else:
             print('Неверно указан номер этажа. Следует ввести цифру!')
     def __len__(self):
