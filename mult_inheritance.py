@@ -62,7 +62,6 @@ sound = "Click-click-click" - звук, который издаёт утконо
 """
 from random import randint
 
-
 class Animal: # животные
     live = True
     sound = None    # звук (изначально отсутствует)
@@ -137,5 +136,3 @@ db.dive_in(6)
 db.get_cords()
 
 db.lay_eggs()
-
-
