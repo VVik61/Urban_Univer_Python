@@ -62,9 +62,6 @@ sound = "Click-click-click" - звук, который издаёт утконо
 """
 from random import randint
 
-from PIL.ImagePalette import random
-
-
 class Animal: # животные
     live = True
     sound = None    # звук (изначально отсутствует)
