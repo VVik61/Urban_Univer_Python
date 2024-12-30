@@ -17,8 +17,6 @@
 'Text for tell.', 'Используйте кодировку utf-8.' - сами строки.
 """
 # -*- coding: utf-8 -*-
-
-
 def custom_write(file_name, string):
     n = 0
     elem = {}
