@@ -30,6 +30,7 @@ sum - принимает список, возвращает сумму его э
 sorted - принимает список, возвращает новый отсортированный
  список на основе переданного.
 """
+
 def apply_all_func(int_list, *functions):
     result = {}
     for func in functions:
